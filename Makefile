@@ -93,7 +93,7 @@ nginx-run: ## Run a nginx container linked to laravel ddd
 nginx-stop: ## Stop the server
 	docker stop "$(image-name)-nginx"
 
-mysql-run: ## Run mysql 8 for dash (local: mysql -u user --password=user -h 127.0.0.1 -P 3336)
+mysql-run: ## Run mysql 8 for laravel (local: mysql -u user --password=user -h 127.0.0.1 -P 3336)
 	docker run --rm \
 		--name $(image-name)-mysql \
 		--network "$(image-name)-network" \
@@ -101,7 +101,7 @@ mysql-run: ## Run mysql 8 for dash (local: mysql -u user --password=user -h 127.
 		-v "$(PWD)/docker/mysql/my.cnf":/etc/mysql/my.cnf \
 		-v "$(PWD)/docker/mysql/data":/var/lib/mysql \
 		-v "$(PWD)/docker/mysql/sql":/docker-entrypoint-initdb.d/ \
-		$(ENV_DB_DASH_OFFERS_MYSQL) \
+		$(ENV_DB_LARAVEL_DDD_MYSQL) \
 		-p 3336:3306 \
 		-d mysql:8.0
 
@@ -132,14 +132,6 @@ ifdef type
 else
 	tail -n 60 -F $(PWD)/var/log/php/error.php-fpm.log $(PWD)/var/log/php/laravel-ddd.log | awk '/INFO/ {print "\033[32m" $$0 "\033[39m"} /DEBUG/ {print "\033[34m" $$0 "\033[39m"} /ERROR/{print "\033[31m" $$0 "\033[39m"} !/INFO|DEBUG|ERROR/{print "\033[35m" $$0 "\033[39m"}'
 endif
-	#docker logs -f $(image-name);
-
-console: ## run a command cmd="landers:sync -v" for egp
-ifdef cmd
-	docker exec -it "$(image-name)" $(console-app) $(cmd)
-else
-	@echo "Please specify a cmd to run, e.g make console cmd='landers:sync -v'"
-endif
 
 php-artisan: ## run a command cmd="landers:sync -v" for egp
 ifdef cmd
@@ -158,10 +150,10 @@ else
 	@echo "Please specify migration name to run, e.g make create-migration name='flights'"
 endif
 
-migrate-up: ## The Up command runs all of the available migrations on the dash (mysql) environment
+migrate-up: ## The Up command runs all of the available migrations on the laravel (mysql) environment
 	make php-artisan cmd="migrate"
 
-migrate-down: ## The Down command rollbacks a single migration on the dash (mysql) environment
+migrate-down: ## The Down command rollbacks a single migration on the laravel (mysql) environment
 	make php-artisan cmd="migrate:rollback"
 
 ## Implement command to create action (Controllers, CommandBus, etc.)
