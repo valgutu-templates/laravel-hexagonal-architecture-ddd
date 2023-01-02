@@ -31,3 +31,25 @@ make up
 ```
 make down
 ```
+
+## Documentation
+### Run artisan commands
+```
+make create-migration name="ExampleMigrationName"
+```
+
+### Migrations
+Create migrations
+```
+make php-artisan cmd="key:generate"
+```
+
+Run migrations
+```
+make migrate-up
+```
+
+Rollback migrations
+```
+migrate-down
+```
