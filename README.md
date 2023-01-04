@@ -34,6 +34,11 @@ make up
 make down
 ```
 
+## Project structure and explanation
+### Root Folders
+**src**
+`src` is for "Source". Here we put all our code base being as independent as possible of any implementation (except is there is in `infrastructure` subfolder).
+
 ## Documentation
 ### Run artisan commands
 ```
