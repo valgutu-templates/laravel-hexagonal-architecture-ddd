@@ -55,7 +55,6 @@ ifeq ("$(wildcard vendor)", "")
 		"$(image-name):$(docker-target)" \
 		/bin/bash
 	docker exec -it "$(image-name)" /bin/bash -c "composer install --ignore-platform-reqs"
-	docker exec -it "$(image-name)" /bin/bash -c "npm install"
 	make stop
 	make run
 else

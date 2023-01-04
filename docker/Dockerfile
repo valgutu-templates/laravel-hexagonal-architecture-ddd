@@ -28,7 +28,6 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 WORKDIR $APP_DIR
-COPY bin bin/
 
 # Install extensions
 RUN docker-php-ext-install pdo_mysql zip exif pcntl
@@ -62,4 +61,3 @@ USER root
 
 USER app
 COPY vendor* vendor/
-COPY node_modules* node_modules/
