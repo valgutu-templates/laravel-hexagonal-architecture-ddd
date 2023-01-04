@@ -1,4 +1,5 @@
 # Laravel DDD - Hexagonal Architecture
+Implementing Domain Driven Design and Hexagonal Architecture example API using Laravel.
 
 ## Description:
   - Hexagonal Architecture folder structure for REST API
