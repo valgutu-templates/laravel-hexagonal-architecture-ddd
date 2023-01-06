@@ -2,6 +2,7 @@ image-name     :=laravel-ddd
 
 # docker-target (See Dockerfile) local, dev, staging, prod
 docker-target  :=local
+app-dir		   :=/var/www/apps/laravel
 
 uid                   :=$(shell id -u)
 gid                   :=$(shell id -g)
@@ -36,6 +37,10 @@ down: ## same as vagrant down
 	make nginx-stop||true
 	make mysql-stop||true
 	make redis-stop||true
+
+restart:
+	make down
+	make up
 
 build: ## (*) Build docker image, use target=[dev|local]
 	DOCKER_BUILDKIT=1 docker build \
@@ -134,7 +139,7 @@ endif
 
 php-artisan: ## run a command cmd="landers:sync -v" for egp
 ifdef cmd
-	docker exec $(image-name) /var/www/artisan $(cmd)
+	docker exec $(image-name) $(app-dir)/artisan $(cmd)
 else
 	@echo "Please specify a cmd to run, e.g make console cmd='landers:sync -v'"
 endif

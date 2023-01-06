@@ -1,18 +1,23 @@
-vendor/
 docker/mysql/data/*
 !docker/mysql/my.cnf
 !docker/mysql/sql/
-docker/pgsql/data/*
-!docker/pgsql/pgloader/*
 .idea
 .php_cs.cache
 .vscode
-bin/*
-!bin/console
-!bin/run-once.sh
-!bin/check-dns.sh
-.env
-.env.live
-var/log/
 version.properties
-.DS_Store
+/var/
+
+###> laravel ###
+/node_modules
+/storage/*.key
+/vendor
+.env
+.env.backup
+.env.test
+.phpunit.result.cache
+docker-compose.override.yml
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+###< laravel ###
