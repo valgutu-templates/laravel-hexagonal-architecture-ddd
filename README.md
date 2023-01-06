@@ -15,19 +15,15 @@ Implementing Domain Driven Design and Hexagonal Architecture example API using L
 - Clone this project: git clone git@github.com:valgutu-templates/laravel-hexagonal-architecture-ddd.git
 - Create `.env` file from `.env.example`
 - Set up DB credentials in `Makefile` and `.env`
-- Generate key
 - Change the ApplicationName in composer.json autoload psr-4
-```
-make php-artisan cmd="key:generate"
-```
-- Disable route caching for dev/local environment
-```
-make php-artisan cmd="route:clear"
-```
 - Rename app in `.env`, `Makefile`, `default.conf`, `Dockerfile`
 - Install all the dependencies and bring up the project with Docker executing:
 ```
 make up
+```
+- Generate key
+```
+make php-artisan cmd="key:generate"
 ```
 - The server should be running on `localhost:8080`
 
