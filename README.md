@@ -16,6 +16,7 @@ Implementing Domain Driven Design and Hexagonal Architecture example API using L
 - Create `.env` file from `.env.example`
 - Set up DB credentials in `Makefile` and `.env`
 - Generate key
+- Change the ApplicationName in composer.json autoload psr-4
 ```
 make php-artisan cmd="key:generate"
 ```
@@ -29,10 +30,6 @@ make php-artisan cmd="route:clear"
 make up
 ```
 - The server should be running on `localhost:8080`
-- Stop local server
-```
-make down
-```
 
 ## Project structure and explanation
 ### Root Folders
