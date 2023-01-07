@@ -47,7 +47,7 @@ build: ## (*) Build docker image, use target=[dev|local]
 		--build-arg USER_ID=$(BUILD_USER_ID) --build-arg GROUP_ID=$(BUILD_GROUP_ID) \
 		--target $(docker-target) \
 		--tag="$(image-name):$(docker-target)" \
-		-f - . < docker/Dockerfile
+		-f - . < etc/docker/Dockerfile
 
 run: ## (*) Run the app php-fpm service
 ifeq ("$(wildcard vendor)", "")
@@ -86,10 +86,10 @@ nginx-run: ## Run a nginx container linked to laravel ddd
 		-p 8080:80 \
 		-p 8083:443 \
 		-e PHP_IDE_CONFIG="serverName=$(image-name)" \
-		-v "$(PWD)/docker/nginx/nginx.conf:/etc/nginx/nginx.conf" \
-		-v "$(PWD)/docker/nginx/conf:/etc/nginx/conf" \
-		-v "$(PWD)/docker/nginx/ssl:/etc/nginx/ssl" \
-		-v "$(PWD)/docker/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf" \
+		-v "$(PWD)/etc/docker/nginx/nginx.conf:/etc/nginx/nginx.conf" \
+		-v "$(PWD)/etc/docker/nginx/conf:/etc/nginx/conf" \
+		-v "$(PWD)/etc/docker/nginx/ssl:/etc/nginx/ssl" \
+		-v "$(PWD)/etc/docker/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf" \
 		-v "$(PWD):/var/www" \
 		-v "$(PWD)/var/log/nginx:/var/log/nginx/" \
 		 nginx:1.17.9-alpine
@@ -102,9 +102,9 @@ mysql-run: ## Run mysql 8 for laravel (local: mysql -u user --password=user -h 1
 		--name $(image-name)-mysql \
 		--network "$(image-name)-network" \
 		--hostname=$(image-name)-mysql \
-		-v "$(PWD)/docker/mysql/my.cnf":/etc/mysql/my.cnf \
-		-v "$(PWD)/docker/mysql/data":/var/lib/mysql \
-		-v "$(PWD)/docker/mysql/sql":/docker-entrypoint-initdb.d/ \
+		-v "$(PWD)/etc/docker/mysql/my.cnf":/etc/mysql/my.cnf \
+		-v "$(PWD)/etc/docker/mysql/data":/var/lib/mysql \
+		-v "$(PWD)/etc/docker/mysql/sql":/docker-entrypoint-initdb.d/ \
 		$(ENV_DB_LARAVEL_DDD_MYSQL) \
 		-p 3336:3306 \
 		-d mysql:8.0

@@ -1,6 +1,6 @@
-docker/mysql/data/*
-!docker/mysql/my.cnf
-!docker/mysql/sql/
+etc/docker/mysql/data/*
+!etc/docker/mysql/my.cnf
+!etc/docker/mysql/sql/
 .idea
 .php_cs.cache
 .vscode
