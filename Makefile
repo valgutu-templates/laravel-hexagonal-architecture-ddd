@@ -2,7 +2,7 @@ image-name     :=laravel-ddd
 
 # docker-target (See Dockerfile) local, dev, staging, prod
 docker-target  :=local
-app-dir		   :=/var/www/apps/laravel
+app-dir		   :=/var/www/framework
 
 uid                   :=$(shell id -u)
 gid                   :=$(shell id -g)

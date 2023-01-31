@@ -1,8 +1,10 @@
 {
-    "name": "laravel/laravel",
+    "name": "framework/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": ["framework",
+        "framework"
+    ],
     "license": "MIT",
     "require": {
         "php": "^7.4|^8.0",
@@ -22,14 +24,14 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "apps/laravel/app/",
+            "App\\": "framework/app/",
             "App\\ApplicationName\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/",
-            "Apps\\Laravel\\Tests\\": "apps/laravel/tests/"
+            "Apps\\Laravel\\Tests\\": "framework/tests/"
         }
     },
     "extra": {
