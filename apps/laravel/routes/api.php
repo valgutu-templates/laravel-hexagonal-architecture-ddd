@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\User\RegisterUserAction;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
+Route::post('/user', RegisterUserAction::class);
