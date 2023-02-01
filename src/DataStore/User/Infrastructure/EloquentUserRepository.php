@@ -8,7 +8,7 @@ use App\ApplicationName\DataStore\User\Domain\UserRepository;
 
 class EloquentUserRepository implements UserRepository
 {
-    public function create(UserRequest $user): UserResponse
+    public function create(UserRequest $userRequest): UserResponse
     {
         return new UserResponse();
     }

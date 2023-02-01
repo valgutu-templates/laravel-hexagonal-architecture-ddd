@@ -30,7 +30,8 @@ up:
 	make mysql-run
 	make redis-run
 	make ps
-	@echo "localhost:8080"
+	make php-artisan-optimize
+	@echo "Server is up at: htpp://localhost:8080"
 
 down: ## same as vagrant down
 	make stop||true
@@ -160,6 +161,12 @@ migrate-up: ## The Up command runs all of the available migrations on the larave
 migrate-down: ## The Down command rollbacks a single migration on the laravel (mysql) environment
 	make php-artisan cmd="migrate:rollback"
 
-## Implement command to create action (Controllers, CommandBus, etc.)
+## Implement command to create action (Controllers, SimpleCommandBus, etc.)
 make create-action:
 	@echo "Implement command"
+
+composer-update: ## Run composer update command within the container
+	docker exec -it "$(image-name)" /bin/bash -c "composer update --ignore-platform-reqs"
+
+cs-fix: ## Run the cs fixer within the container
+	docker exec -it "$(image-name)" composer cs-fixer

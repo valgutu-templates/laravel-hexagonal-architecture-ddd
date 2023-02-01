@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ApplicationName\Shared\Application\SimpleCommandBus;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -12,6 +13,11 @@ use Symfony\Component\HttpFoundation\Response;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function commandBus(): SimpleCommandBus
+    {
+        return app(SimpleCommandBus::class);
+    }
 
     final protected function successResponse(?array $data = null, int $statusCode = Response::HTTP_OK): JsonResponse
     {

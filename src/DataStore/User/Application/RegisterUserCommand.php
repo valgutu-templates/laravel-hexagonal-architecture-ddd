@@ -3,17 +3,16 @@
 namespace App\ApplicationName\DataStore\User\Application;
 
 use App\ApplicationName\DataStore\User\Domain\DTO\UserRequest;
-use App\ApplicationName\DataStore\User\Domain\DTO\UserResponse;
-use App\ApplicationName\DataStore\User\Domain\UserRepository;
+use App\ApplicationName\Shared\Domain\Command;
 
-class RegisterUserCommand
+class RegisterUserCommand implements Command
 {
-    public function __construct(private UserRepository $contract)
+    public function __construct(private UserRequest $userRequest)
     {
     }
 
-    public function execute(UserRequest $request): UserResponse
+    public function userRequest(): UserRequest
     {
-        return $this->contract->create($request);
+        return $this->userRequest;
     }
 }

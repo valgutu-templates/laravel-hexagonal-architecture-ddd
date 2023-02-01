@@ -20,7 +20,11 @@
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^5.10",
-        "phpunit/phpunit": "^9.5.8"
+        "phpunit/phpunit": "^9.5.8",
+        "friendsofphp/php-cs-fixer": "~2.8"
+    },
+    "scripts": {
+        "cs-fixer": "bin/php-cs-fixer fix --config=php_cs.dist"
     },
     "autoload": {
         "psr-4": {
