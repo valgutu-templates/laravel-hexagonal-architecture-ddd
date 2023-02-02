@@ -17,15 +17,22 @@ class RegisterUserAction extends Controller
 
     public function __invoke(): JsonResponse
     {
-        $this->commandBus()->handle(
+        $commandResponse = $this->commandBus()->handle(
             new RegisterUserCommand(new UserRequest(
                 'valery@test.com',
                 'mypassword'
             ))
         );
 
-        return $this->successResponse([
-            'hi' => true
-        ]);
+        if ($commandResponse->success()) {
+            return $this->jsonResponse(statusCode: 201);
+        } else {
+            return $this->jsonResponse(
+                data: [
+                    'error' => $commandResponse->message(),
+                ],
+                statusCode: $commandResponse->statusCode()
+            );
+        }
     }
 }

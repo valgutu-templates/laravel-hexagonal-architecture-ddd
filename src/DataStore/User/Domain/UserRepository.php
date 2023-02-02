@@ -7,5 +7,5 @@ use App\ApplicationName\DataStore\User\Domain\DTO\UserResponse;
 
 interface UserRepository
 {
-    public function create(UserRequest $user): UserResponse;
+    public function create(UserRequest $userRequest): UserResponse;
 }

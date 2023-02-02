@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\ApplicationName\Shared\Application\SimpleCommandBus;
+use App\ApplicationName\Shared\CommandBus\Domain\CommandBus;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -14,23 +14,9 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function commandBus(): SimpleCommandBus
+    public function commandBus(): CommandBus
     {
-        return app(SimpleCommandBus::class);
-    }
-
-    final protected function successResponse(?array $data = null, int $statusCode = Response::HTTP_OK): JsonResponse
-    {
-        $response['success'] = true;
-        $response['data'] = $data;
-        return $this->jsonResponse($response, $statusCode);
-    }
-
-    final protected function errorResponse(string $errorMessage = null, int $statusCode = Response::HTTP_INTERNAL_SERVER_ERROR): JsonResponse
-    {
-        $response['success'] = false;
-        $response['error'] = $errorMessage;
-        return $this->jsonResponse($response, $statusCode);
+        return app(CommandBus::class);
     }
 
     final protected function jsonResponse(?array $data = null, int $statusCode = Response::HTTP_OK): JsonResponse

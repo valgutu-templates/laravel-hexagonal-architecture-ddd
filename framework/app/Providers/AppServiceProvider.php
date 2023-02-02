@@ -4,7 +4,8 @@ namespace App\Providers;
 
 use App\ApplicationName\DataStore\User\Application\RegisterUserCommand;
 use App\ApplicationName\DataStore\User\Application\RegisterUserCommandHandler;
-use App\ApplicationName\Shared\Application\SimpleCommandBus;
+use App\ApplicationName\Shared\CommandBus\Application\SimpleCommandBus;
+use App\ApplicationName\Shared\CommandBus\Domain\CommandBus;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -16,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(SimpleCommandBus::class, function() {
+        $this->app->singleton(CommandBus::class, function() {
             $commandBus = new SimpleCommandBus();
             $commandBus->registerHandler(RegisterUserCommand::class, app(RegisterUserCommandHandler::class));
 

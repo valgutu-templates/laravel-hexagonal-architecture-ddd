@@ -3,6 +3,11 @@ ARG PHP_VERSION=8.0.14
 
 FROM php:${PHP_VERSION}-fpm AS base
 
+# This user and group must have id's corresponding to the user on the server
+# in this case we create a user/group finixio 1001:1001 so we can write to our log files
+ARG USER_ID=1001
+ARG GROUP_ID=1001
+
 # Set working directory
 ENV APP_DIR=/var/www
 
@@ -27,27 +32,28 @@ RUN apt-get update && apt-get install -y \
 # Clear cache \
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
+RUN delgroup $(GROUP_ID) || true \
+    groupadd --gid $GROUP_ID app \
+    && useradd --create-home \
+    --home-dir /home/app \
+    --shell /bin/bash \
+    --uid $USER_ID \
+    app
+
 WORKDIR $APP_DIR
 
-COPY bin bin/
+COPY ./../../bin bin/
 
 # Install extensions
 RUN docker-php-ext-install pdo_mysql zip exif pcntl
 RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/
 RUN docker-php-ext-install gd
 
-# Add user for framework application
-RUN groupadd -g 1000 www
-RUN useradd -u 1000 -ms /bin/bash -g www www
+# Using USER directive before WORKDIR would not create app directory belonging to user so we must change owner here
+RUN chown -R $USER_ID:$GROUP_ID $APP_DIR
 
-# Copy existing application directory contents
-#COPY ./ $APP_DIR
-
-# Copy existing application directory permissions
-COPY --chown=www:www . $APP_DIR
-
-# Change current user to www
-USER www
+# Change current user to app
+USER app
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000

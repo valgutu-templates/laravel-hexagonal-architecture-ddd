@@ -1,12 +1,9 @@
 <?php
 
-namespace App\ApplicationName\Shared\Domain\Exceptions;
-
-use Throwable;
+namespace App\ApplicationName\Shared\CommandBus\Domain\Exceptions;
 
 class CommandNotExistException extends \Exception
 {
-
     public function __construct(private string $commandClassName = '')
     {
         parent::__construct();
