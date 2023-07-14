@@ -13,21 +13,21 @@
 
 app('router')->setCompiledRoutes(
     array (
-  'compiled' => 
+  'compiled' =>
   array (
     0 => false,
-    1 => 
+    1 =>
     array (
-      '/api/user' => 
+      '/api/user' =>
       array (
-        0 => 
+        0 =>
         array (
-          0 => 
+          0 =>
           array (
             '_route' => 'generated::TkC2cSowohHD6Zzf',
           ),
           1 => NULL,
-          2 => 
+          2 =>
           array (
             'POST' => 0,
           ),
@@ -38,46 +38,46 @@ app('router')->setCompiledRoutes(
         ),
       ),
     ),
-    2 => 
+    2 =>
     array (
     ),
-    3 => 
+    3 =>
     array (
     ),
     4 => NULL,
   ),
-  'attributes' => 
+  'attributes' =>
   array (
-    'generated::TkC2cSowohHD6Zzf' => 
+    'generated::TkC2cSowohHD6Zzf' =>
     array (
-      'methods' => 
+      'methods' =>
       array (
         0 => 'POST',
       ),
       'uri' => 'api/user',
-      'action' => 
+      'action' =>
       array (
-        'middleware' => 
+        'middleware' =>
         array (
           0 => 'api',
         ),
-        'uses' => 'App\\Http\\Controllers\\User\\RegisterUserAction@__invoke',
-        'controller' => 'App\\Http\\Controllers\\User\\RegisterUserAction',
+        'uses' => 'App\\Http\\Actions\\User\\RegisterUserAction@__invoke',
+        'controller' => 'App\\Http\\Actions\\User\\RegisterUserAction',
         'namespace' => NULL,
         'prefix' => 'api',
-        'where' => 
+        'where' =>
         array (
         ),
         'as' => 'generated::TkC2cSowohHD6Zzf',
       ),
       'fallback' => false,
-      'defaults' => 
+      'defaults' =>
       array (
       ),
-      'wheres' => 
+      'wheres' =>
       array (
       ),
-      'bindingFields' => 
+      'bindingFields' =>
       array (
       ),
       'lockSeconds' => NULL,

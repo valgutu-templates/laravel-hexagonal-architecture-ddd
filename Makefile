@@ -160,6 +160,6 @@ migrate-up: ## The Up command runs all of the available migrations on the larave
 migrate-down: ## The Down command rollbacks a single migration on the laravel (mysql) environment
 	make php-artisan cmd="migrate:rollback"
 
-## Implement command to create action (Controllers, CommandBus, etc.)
+## Implement command to create action (Actions, CommandBus, etc.)
 make create-action:
 	@echo "Implement command"

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\User\RegisterUserAction;
+use App\ApplicationName\Authentication\Infrastructure\Actions\RegisterUserAction;
 use Illuminate\Support\Facades\Route;
 
 /*

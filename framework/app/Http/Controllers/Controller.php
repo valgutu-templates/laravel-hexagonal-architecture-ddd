@@ -13,21 +13,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    final protected function successResponse(?array $data = null, int $statusCode = Response::HTTP_OK): JsonResponse
-    {
-        $response['success'] = true;
-        $response['data'] = $data;
-        return $this->jsonResponse($response, $statusCode);
-    }
-
-    final protected function errorResponse(string $errorMessage = null, int $statusCode = Response::HTTP_INTERNAL_SERVER_ERROR): JsonResponse
-    {
-        $response['success'] = false;
-        $response['error'] = $errorMessage;
-        return $this->jsonResponse($response, $statusCode);
-    }
-
-    final protected function jsonResponse(?array $data = null, int $statusCode = Response::HTTP_OK): JsonResponse
+    final protected function jsonResponse(int $statusCode = Response::HTTP_OK, ?array $data = null): JsonResponse
     {
         return new JsonResponse($data, $statusCode);
     }
