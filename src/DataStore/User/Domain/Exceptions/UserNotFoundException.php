@@ -8,12 +8,8 @@ use DomainException;
 
 class UserNotFoundException extends DomainException
 {
-    private int $id;
-
-    public function __construct(int $id)
+    public function __construct(private string $id)
     {
-        $this->id = $id;
-
         parent::__construct();
     }
 
@@ -24,6 +20,6 @@ class UserNotFoundException extends DomainException
 
     public function errorMessage(): string
     {
-        return sprintf('The user id <%d> does not exist', $this->id);
+        return sprintf('User <%d> does not exist', $this->id);
     }
 }

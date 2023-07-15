@@ -147,7 +147,7 @@ endif
 php-artisan-optimize: ## run a command cmd="landers:sync -v" for egp
 	make php-artisan cmd="optimize"
 
-create-migration:
+migrate-create:
 ifdef name
 	make php-artisan cmd="make:migration ${name}"
 else

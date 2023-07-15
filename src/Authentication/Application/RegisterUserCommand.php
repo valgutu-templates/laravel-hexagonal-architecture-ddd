@@ -33,16 +33,24 @@ class RegisterUserCommand
         ));
 
         if (201 === $response->getStatus()) {
-            $response =  $this->authentication->auth(new AuthenticationRequest(
+            $authResponse =  $this->authentication->auth(new AuthenticationRequest(
                 $request->email(),
                 $request->phone(),
                 $request->password(),
             ));
-        }
 
-        return new CommandResponse(
-            $response->getStatus(),
-            $response->getData()
-        );
+            return new CommandResponse(
+                200,
+                [
+                    'auth' => $authResponse->getData(),
+                    'user' => $response->getData(),
+                ]
+            );
+        } else {
+            return new CommandResponse(
+                $response->getStatus(),
+                $response->getData()
+            );
+        }
     }
 }

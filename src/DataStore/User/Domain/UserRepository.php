@@ -11,7 +11,9 @@ interface UserRepository
 
     public function update(UserRequest $request): UserResponse;
 
-    public function get(int $id): UserResponse;
+    public function find(int $id): UserResponse;
+
+    public function findByEmail(string $email): UserResponse;
 
     public function all(): array;
 

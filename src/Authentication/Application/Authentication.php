@@ -4,6 +4,7 @@ namespace App\ApplicationName\Authentication\Application;
 
 use App\ApplicationName\Authentication\Domain\DTO\AuthenticationRequest;
 use App\ApplicationName\Authentication\Domain\DTO\AuthenticationResponse;
+use Illuminate\Support\Facades\Auth;
 
 class Authentication
 {

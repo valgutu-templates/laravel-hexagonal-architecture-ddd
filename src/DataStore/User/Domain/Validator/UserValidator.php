@@ -2,10 +2,18 @@
 
 namespace App\ApplicationName\DataStore\User\Domain\Validator;
 
+use App\ApplicationName\DataStore\User\Domain\Exceptions\UserNotFoundException;
+use App\ApplicationName\DataStore\User\Domain\UserRepository;
 use App\ApplicationName\Shared\Validation\Domain\DTO\ValidationResult;
 
 class UserValidator
 {
+    public function __construct(
+        private UserRepository $userRepository
+    )
+    {
+    }
+
     public function validate(array $data): ValidationResult
     {
         $validation = new ValidationResult();
@@ -15,6 +23,8 @@ class UserValidator
             $validation->addError($field, 'Field is required.');
         } elseif (!$this->isEmail($data[$field])) {
             $validation->addError($field, 'Should be a valid email address.');
+        } elseif (!$this->emailIsUnique($data[$field])) {
+            $validation->addError($field, sprintf('User with email address <%s> already exists.', $data[$field]));
         }
 
         $field = 'password';
@@ -29,6 +39,16 @@ class UserValidator
 
     private function isEmail(string $email): bool
     {
-        return true;
+        return str_contains($email, '@');
+    }
+
+    private function emailIsUnique(string $email): bool
+    {
+        try {
+            $this->userRepository->findByEmail($email);
+            return false;
+        } catch (UserNotFoundException) {
+            return true;
+        }
     }
 }

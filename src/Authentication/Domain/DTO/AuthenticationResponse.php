@@ -2,7 +2,7 @@
 
 namespace App\ApplicationName\Authentication\Domain\DTO;
 
-use App\ApplicationName\Shared\CommandResponse;
+use App\ApplicationName\Shared\CommandBus\Domain\DTO\CommandResponse;
 
 class AuthenticationResponse extends CommandResponse
 {

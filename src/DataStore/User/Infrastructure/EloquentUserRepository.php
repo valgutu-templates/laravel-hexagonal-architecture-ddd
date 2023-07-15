@@ -4,6 +4,7 @@ namespace App\ApplicationName\DataStore\User\Infrastructure;
 
 use App\ApplicationName\DataStore\User\Domain\DTO\UserRequest;
 use App\ApplicationName\DataStore\User\Domain\DTO\UserResponse;
+use App\ApplicationName\DataStore\User\Domain\Exceptions\UserNotFoundException;
 use App\ApplicationName\DataStore\User\Domain\Models\User;
 use App\ApplicationName\DataStore\User\Domain\UserRepository;
 use Illuminate\Support\Facades\Hash;
@@ -23,7 +24,7 @@ class EloquentUserRepository implements UserRepository
     {
         $user = User::find($request->id());
         if (!$user) {
-
+            throw new UserNotFoundException($request->id());
         }
 
         if (!is_null($request->firstName())) {
@@ -47,9 +48,25 @@ class EloquentUserRepository implements UserRepository
         return new UserResponse($user->toArray());
     }
 
-    public function get(int $id): UserResponse
+    public function find(int $id): UserResponse
     {
-        return new UserResponse();
+        $user = User::find($id);
+        if (!$user) {
+            throw new UserNotFoundException($id);
+        }
+
+        return new UserResponse($user->toArray());
+    }
+
+    public function findByEmail(string $email): UserResponse
+    {
+        $user = User::where('email', $email)->first();
+
+        if (!$user) {
+            throw new UserNotFoundException($email);
+        }
+
+        return new UserResponse($user->toArray());
     }
 
     public function all(): array
