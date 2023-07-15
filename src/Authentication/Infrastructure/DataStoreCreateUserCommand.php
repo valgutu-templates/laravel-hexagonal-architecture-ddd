@@ -2,18 +2,19 @@
 
 namespace App\ApplicationName\Authentication\Infrastructure;
 
-use App\ApplicationName\DataStore\User\Application\CreateUserCommand;
+use App\ApplicationName\Authentication\Domain\CreateUserCommand;
 use App\ApplicationName\DataStore\User\Domain\DTO\UserRequest;
-use App\ApplicationName\DataStore\User\Domain\DTO\UserResponse;
+use App\ApplicationName\Shared\CommandBus\Domain\DTO\CommandResponse;
+use App\ApplicationName\DataStore\User\Application\CreateUserCommand as CreateUserDataStoreCommand;
 
-class DataStoreCreateUserCommand
+class DataStoreCreateUserCommand implements CreateUserCommand
 {
-    public function __construct(private CreateUserCommand $command)
+    public function __construct(private CreateUserDataStoreCommand $command)
     {
     }
 
-    public function execute(UserRequest $request): UserResponse
+    public function execute(UserRequest $request): CommandResponse
     {
-        $this->command->execute($request);
+        return $this->command->execute($request);
     }
 }

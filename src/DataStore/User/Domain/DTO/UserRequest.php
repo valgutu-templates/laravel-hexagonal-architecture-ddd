@@ -10,7 +10,7 @@ class UserRequest
         private ?string $lastName = null,
         private ?string $email = null,
         private ?string $phone = null,
-        private ?string $password = null,
+        private ?string $password = null
     )
     {
     }
@@ -52,7 +52,8 @@ class UserRequest
             'first_name' => $this->firstName,
             'last_name' => $this->lastName,
             'email' => $this->email,
-            'phone' => $this->phone
+            'phone' => $this->phone,
+            'password' => $this->password
         ];
     }
 }

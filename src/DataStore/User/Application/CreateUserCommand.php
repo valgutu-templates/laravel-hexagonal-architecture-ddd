@@ -17,7 +17,7 @@ class CreateUserCommand
     {
         $validation = $this->userValidator->validate($request->toArray());
         if ($validation->isFailed()) {
-            return new CommandResponse(400, [], $validation->errors());
+            return new CommandResponse(400, $validation->jsonSerialize());
         }
 
         try {

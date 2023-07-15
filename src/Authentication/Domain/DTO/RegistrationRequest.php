@@ -32,4 +32,14 @@ class RegistrationRequest
     {
         return $this->passwordConfirmation;
     }
+
+    public function toArray(): array
+    {
+        return [
+            'email' => $this->email,
+            'phone' => $this->phone,
+            'password' => $this->password,
+            'password_confirmation' => $this->passwordConfirmation
+        ];
+    }
 }

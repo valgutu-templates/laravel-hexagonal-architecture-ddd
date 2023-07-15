@@ -22,15 +22,13 @@ class RegistrationValidator
             $validation->addError($field, 'Field is required.');
         } elseif (strlen($data[$field]) < 8) {
             $validation->addError($field, 'Password must contain at least 8 characters.');
-        }
-
-        $field = 'password_confirmation';
-        if (!isset($data[$field])) {
-            $validation->addError($field, 'Field is required.');
-        }
-
-        if ($data['password'] !== $data['password_confirmation']) {
-            $validation->addError('password_confirmation', 'Password and confirm password do NOT match.');
+        } else {
+            $field = 'password_confirmation';
+            if (!isset($data[$field])) {
+                $validation->addError($field, 'Field is required.');
+            } elseif ($data['password'] !== $data['password_confirmation']) {
+                $validation->addError('password_confirmation', 'Password and confirm password do NOT match.');
+            }
         }
 
         return $validation;

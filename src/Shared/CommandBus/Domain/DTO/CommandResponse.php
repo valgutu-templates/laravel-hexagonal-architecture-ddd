@@ -6,13 +6,9 @@ class CommandResponse
 {
     public function __construct(
         private int $status,
-        private array $data = [],
-        private array $errors = []
+        private array $data = []
     )
     {
-        if (!empty($this->errors)) {
-            $this->setErrors($errors);
-        }
     }
 
     public function getStatus(): int
@@ -23,10 +19,5 @@ class CommandResponse
     public function getData(): array
     {
         return $this->data;
-    }
-
-    protected function setErrors(array $errors): void
-    {
-        $this->data['errors'] = $errors;
     }
 }
