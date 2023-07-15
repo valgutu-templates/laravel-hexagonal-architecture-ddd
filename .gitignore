@@ -6,6 +6,8 @@ etc/docker/mysql/data/*
 .vscode
 version.properties
 /var/
+/framework/bootstrap/cache
+/framework/storage
 
 ###> laravel ###
 /node_modules
