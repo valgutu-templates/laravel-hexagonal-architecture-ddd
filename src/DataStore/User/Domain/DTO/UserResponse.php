@@ -2,6 +2,8 @@
 
 namespace App\ApplicationName\DataStore\User\Domain\DTO;
 
+use Carbon\Carbon;
+
 class UserResponse implements \JsonSerializable
 {
     private ?int $id;
@@ -9,6 +11,8 @@ class UserResponse implements \JsonSerializable
     private ?string $lastName;
     private ?string $email;
     private ?string $phone;
+    private ?string $createdAt;
+    private ?string $updatedAt;
 
     public function __construct(array $row)
     {
@@ -17,6 +21,8 @@ class UserResponse implements \JsonSerializable
         $this->lastName = $row['last_name'] ?? null;
         $this->email = $row['email'] ?? null;
         $this->phone = $row['phone'] ?? null;
+        $this->createdAt = $row['created_at'] ?? null;
+        $this->updatedAt = $row['updated_at'] ?? null;
     }
 
     public function id(): ?int
@@ -44,6 +50,16 @@ class UserResponse implements \JsonSerializable
         return $this->phone;
     }
 
+    public function createdAt(): ?string
+    {
+        return $this->createdAt;
+    }
+
+    public function updatedAt(): ?string
+    {
+        return $this->updatedAt;
+    }
+
     public function toArray(): array
     {
         return [
@@ -51,7 +67,9 @@ class UserResponse implements \JsonSerializable
             'first_name' => $this->firstName,
             'last_name' => $this->lastName,
             'email' => $this->email,
-            'phone' => $this->phone
+            'phone' => $this->phone,
+            'created_at' => $this->createdAt,
+            'updated_at' => $this->updatedAt,
         ];
     }
 

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\ApplicationName\Authentication\Domain\Validator;
+namespace App\ApplicationName\Registration\Domain\Validator;
 
 use App\ApplicationName\Shared\Validation\Domain\DTO\ValidationResult;
+use App\ApplicationName\Shared\Validation\Validator;
 
 class RegistrationValidator
 {
@@ -13,7 +14,7 @@ class RegistrationValidator
         $field = 'email';
         if (!isset($data[$field])) {
             $validation->addError($field, 'Field is required.');
-        } elseif (!$this->isEmail($data[$field])) {
+        } elseif (!Validator::isEmail($data[$field])) {
             $validation->addError($field, 'Should be a valid email address.');
         }
 
@@ -32,10 +33,5 @@ class RegistrationValidator
         }
 
         return $validation;
-    }
-
-    private function isEmail(string $email): bool
-    {
-        return true;
     }
 }

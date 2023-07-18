@@ -4,26 +4,23 @@ namespace App\ApplicationName\Authentication\Application;
 
 use App\ApplicationName\Authentication\Domain\DTO\AuthenticationRequest;
 use App\ApplicationName\Authentication\Domain\DTO\AuthenticationResponse;
-use Illuminate\Support\Facades\Auth;
+use App\ApplicationName\Authentication\Domain\Validator\AuthByEmailValidator;
 
 class Authentication
 {
-    public function __construct()
+    public function __construct(
+        private AuthByEmailValidator $authByEmailValidator
+    )
     {
     }
 
-    public function auth(AuthenticationRequest $requests): AuthenticationResponse
+    public function authByEmail(AuthenticationRequest $requests): AuthenticationResponse
     {
-        return new AuthenticationResponse(200, []);
-    }
+        $validation = $this->authByEmailValidator->validate($requests->toArray());
+        if ($validation->isFailed()) {
+            return new AuthenticationResponse(400, $validation->jsonSerialize());
+        }
 
-    private function authByEmail(string $email, string $password): AuthenticationResponse
-    {
-        return new AuthenticationResponse(200, []);
-    }
-
-    private function authByPhone(string $phone, string $password): AuthenticationResponse
-    {
         return new AuthenticationResponse(200, []);
     }
 }

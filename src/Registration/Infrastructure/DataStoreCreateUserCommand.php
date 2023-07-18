@@ -1,8 +1,8 @@
 <?php
 
-namespace App\ApplicationName\Authentication\Infrastructure;
+namespace App\ApplicationName\Registration\Infrastructure;
 
-use App\ApplicationName\Authentication\Domain\CreateUserCommand;
+use App\ApplicationName\Registration\Domain\CreateUserCommand;
 use App\ApplicationName\DataStore\User\Domain\DTO\UserRequest;
 use App\ApplicationName\Shared\CommandBus\Domain\DTO\CommandResponse;
 use App\ApplicationName\DataStore\User\Application\CreateUserCommand as CreateUserDataStoreCommand;

@@ -1,6 +1,7 @@
 <?php
 
-use App\ApplicationName\Authentication\Infrastructure\Actions\RegisterUserAction;
+use App\ApplicationName\Authentication\Infrastructure\Actions\AuthAction;
+use App\ApplicationName\Registration\Infrastructure\Actions\RegisterUserAction;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::prefix('v1')->group(function () {
-    Route::prefix('user')->group(function () {
-        Route::post('/register', RegisterUserAction::class);
-    });
+    Route::post('/user/register', RegisterUserAction::class);
+
+    Route::post('/user/auth', AuthAction::class);
 });

@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\ApplicationName\Authentication\Domain\CreateUserCommand;
-use App\ApplicationName\Authentication\Infrastructure\DataStoreCreateUserCommand;
+use App\ApplicationName\Registration\Domain\CreateUserCommand;
+use App\ApplicationName\Registration\Infrastructure\DataStoreCreateUserCommand;
 use Illuminate\Support\ServiceProvider;
 
 class CommandServiceProvider extends ServiceProvider

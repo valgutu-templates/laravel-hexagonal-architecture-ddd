@@ -2,6 +2,8 @@
 
 namespace App\ApplicationName\DataStore\User\Domain\DTO;
 
+use Ramsey\Uuid\Type\Integer;
+
 class UserRequest
 {
     public function __construct(
@@ -10,7 +12,8 @@ class UserRequest
         private ?string $lastName = null,
         private ?string $email = null,
         private ?string $phone = null,
-        private ?string $password = null
+        private ?string $password = null,
+        private ?int $role = null,
     )
     {
     }
@@ -45,6 +48,16 @@ class UserRequest
         return $this->password;
     }
 
+    public function role(): ?int
+    {
+        return $this->role;
+    }
+
+    public function setRole(int $role): void
+    {
+        $this->role = $role;
+    }
+
     public function toArray(): array
     {
         return [
@@ -53,7 +66,8 @@ class UserRequest
             'last_name' => $this->lastName,
             'email' => $this->email,
             'phone' => $this->phone,
-            'password' => $this->password
+            'password' => $this->password,
+            'role_id' => $this->role
         ];
     }
 }

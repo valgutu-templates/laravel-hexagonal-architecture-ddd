@@ -6,7 +6,6 @@ class AuthenticationRequest
 {
     public function __construct(
         private ?string $email = null,
-        private ?string $phone = null,
         private ?string $password = null
     )
     {
@@ -17,13 +16,16 @@ class AuthenticationRequest
         return $this->email;
     }
 
-    public function phone(): ?string
-    {
-        return $this->phone;
-    }
-
     public function password(): ?string
     {
         return $this->password;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'email' => $this->email,
+            'password' => $this->password
+        ];
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ApplicationName\Authentication\Domain\DTO;
+namespace App\ApplicationName\Registration\Domain\DTO;
 
 class RegistrationRequest
 {

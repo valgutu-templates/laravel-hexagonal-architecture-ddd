@@ -21,7 +21,14 @@ class CreateUsersTable extends Migration
             $table->string('phone')->unique()->nullable();
             $table->string('password')->nullable();
             $table->boolean('email_confirmed')->default(false);
+            $table->unsignedBigInteger('role_id')->nullable();
             $table->timestamps();
+
+            $table->index(['email', 'role_id']);
+            $table->foreign('role_id')
+                ->references('id')
+                ->on('roles')
+                ->onDelete('cascade');
         });
     }
 

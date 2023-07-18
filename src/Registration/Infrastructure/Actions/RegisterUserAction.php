@@ -1,9 +1,9 @@
 <?php
 
-namespace App\ApplicationName\Authentication\Infrastructure\Actions;
+namespace App\ApplicationName\Registration\Infrastructure\Actions;
 
-use App\ApplicationName\Authentication\Application\RegisterUserCommand;
-use App\ApplicationName\Authentication\Domain\DTO\RegistrationRequest;
+use App\ApplicationName\Registration\Application\RegisterUserCommand;
+use App\ApplicationName\Registration\Domain\DTO\RegistrationRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
