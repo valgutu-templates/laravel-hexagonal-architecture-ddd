@@ -2,6 +2,7 @@
 
 namespace App\ApplicationName\Authentication\Application;
 
+use App\ApplicationName\Authentication\Domain\AccessToken;
 use App\ApplicationName\Authentication\Domain\DTO\AuthenticationRequest;
 use App\ApplicationName\Authentication\Domain\DTO\AuthenticationResponse;
 use App\ApplicationName\Authentication\Domain\Validator\AuthByEmailValidator;
@@ -9,7 +10,8 @@ use App\ApplicationName\Authentication\Domain\Validator\AuthByEmailValidator;
 class Authentication
 {
     public function __construct(
-        private AuthByEmailValidator $authByEmailValidator
+        private AuthByEmailValidator $authByEmailValidator,
+        private AccessToken $accessToken,
     )
     {
     }
@@ -21,6 +23,15 @@ class Authentication
             return new AuthenticationResponse(400, $validation->jsonSerialize());
         }
 
-        return new AuthenticationResponse(200, []);
+        // check credentials
+        // ...
+
+        // generate access token
+        $response = $this->accessToken->create(1);
+
+        return new AuthenticationResponse(200, [
+            'access_token' => $response->accessToken(),
+            'expires_at' => $response->expiresAt(),
+        ]);
     }
 }

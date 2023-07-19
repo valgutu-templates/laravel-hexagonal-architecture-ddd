@@ -71,11 +71,11 @@ class EloquentUserRepository implements UserRepository
 
     public function all(): array
     {
-        return [];
+        return User::all()->toArray();
     }
 
     public function delete(int $id): bool
     {
-        return false;
+        return User::where('id', $id)->delete();
     }
 }

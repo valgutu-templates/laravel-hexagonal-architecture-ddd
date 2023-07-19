@@ -44,7 +44,7 @@ class ValidationResult implements JsonSerializable
         ];
 
         if ($this->errors) {
-            $payload['message'] = 'Validator error';
+            $payload['message'] = 'Validation error';
             $payload['errors'] = $this->errors;
         }
 

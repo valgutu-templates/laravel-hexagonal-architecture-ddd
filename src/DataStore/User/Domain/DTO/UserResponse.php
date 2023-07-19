@@ -2,8 +2,6 @@
 
 namespace App\ApplicationName\DataStore\User\Domain\DTO;
 
-use Carbon\Carbon;
-
 class UserResponse implements \JsonSerializable
 {
     private ?int $id;

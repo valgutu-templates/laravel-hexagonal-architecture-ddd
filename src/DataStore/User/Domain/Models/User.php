@@ -2,9 +2,11 @@
 
 namespace App\ApplicationName\DataStore\User\Domain\Models;
 
+use App\ApplicationName\DataStore\AccessToken\Domain\Models\AccessToken;
 use App\ApplicationName\DataStore\Role\Domain\Models\Role;
 use App\ApplicationName\Shared\Traits\TimestampsFormat;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Model
@@ -17,11 +19,14 @@ class User extends Model
 
     protected $fillable = ['first_name', 'last_name', 'email', 'phone', 'password', 'email_confirmed', 'role_id'];
 
-    private string $defaultRole = 'client';
-
     // relationships
     public function role(): HasOne
     {
         return $this->hasOne(Role::class, 'id', 'role_id');
+    }
+
+    public function accessToken(): HasMany
+    {
+        return $this->hasMany(AccessToken::class, 'user_id', 'id');
     }
 }

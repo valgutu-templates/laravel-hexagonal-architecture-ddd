@@ -2,8 +2,6 @@
 
 namespace App\ApplicationName\DataStore\User\Domain\DTO;
 
-use Ramsey\Uuid\Type\Integer;
-
 class UserRequest
 {
     public function __construct(
