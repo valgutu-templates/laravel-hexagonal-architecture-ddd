@@ -15,7 +15,7 @@ class UserNotFoundException extends DomainException
 
     public function errorCode(): string
     {
-        return 'user_not_exist';
+        return 'user_not_found';
     }
 
     public function errorMessage(): string

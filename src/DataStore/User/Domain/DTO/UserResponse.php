@@ -9,6 +9,7 @@ class UserResponse implements \JsonSerializable
     private ?string $lastName;
     private ?string $email;
     private ?string $phone;
+    private ?string $password;
     private ?string $createdAt;
     private ?string $updatedAt;
 
@@ -19,6 +20,7 @@ class UserResponse implements \JsonSerializable
         $this->lastName = $row['last_name'] ?? null;
         $this->email = $row['email'] ?? null;
         $this->phone = $row['phone'] ?? null;
+        $this->password = $row['password'] ?? null;
         $this->createdAt = $row['created_at'] ?? null;
         $this->updatedAt = $row['updated_at'] ?? null;
     }
@@ -48,6 +50,11 @@ class UserResponse implements \JsonSerializable
         return $this->phone;
     }
 
+    public function password(): ?string
+    {
+        return $this->password();
+    }
+
     public function createdAt(): ?string
     {
         return $this->createdAt;
@@ -58,9 +65,9 @@ class UserResponse implements \JsonSerializable
         return $this->updatedAt;
     }
 
-    public function toArray(): array
+    public function toArray(bool $withPassword = false): array
     {
-        return [
+        $data = [
             'id' => $this->id,
             'first_name' => $this->firstName,
             'last_name' => $this->lastName,
@@ -69,6 +76,10 @@ class UserResponse implements \JsonSerializable
             'created_at' => $this->createdAt,
             'updated_at' => $this->updatedAt,
         ];
+        if ($withPassword) {
+            $data['password'] = $this->password;
+        }
+        return $data;
     }
 
     public function jsonSerialize(): array
