@@ -24,8 +24,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Framework\\": "framework/app/",
-            "App\\": "src/"
+            "App\\": "framework/app/",
+            "App\\ApplicationName\\": "src/"
         }
     },
     "autoload-dev": {
