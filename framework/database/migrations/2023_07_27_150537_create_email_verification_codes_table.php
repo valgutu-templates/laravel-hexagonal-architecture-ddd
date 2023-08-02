@@ -16,6 +16,7 @@ class CreateEmailVerificationCodesTable extends Migration
         Schema::create('email_verification_codes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->string('to_email');
             $table->string('code')->unique();
             $table->boolean('sent')->default(false);
             $table->boolean('confirmed')->default(false);

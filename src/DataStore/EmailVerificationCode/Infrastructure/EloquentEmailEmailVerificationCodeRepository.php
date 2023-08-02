@@ -20,12 +20,18 @@ class EloquentEmailEmailVerificationCodeRepository implements EmailVerificationC
 
     public function find(EmailVerificationCodeRequest $request): EmailVerificationCodeResponse
     {
-        $row = EmailVerificationCode::query()
-            ->where('code', $request->code())
-            ->first();
+        $query = EmailVerificationCode::query()->orderByDesc('id');
 
+        if ($request->code()) {
+            $query->where('code' , $request->code());
+        }
+        if ($request->userId()) {
+            $query->where('user_id' , $request->userId());
+        }
+
+        $row = $query->first();
         if (!$row) {
-            throw new EmailVerificationCodeNotFoundException($request->code());
+            throw new EmailVerificationCodeNotFoundException();
         }
 
         return new EmailVerificationCodeResponse($row->toArray());

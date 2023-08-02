@@ -2,12 +2,15 @@
 
 namespace App\ApplicationName\Mailing\Infrastructure;
 
-use App\ApplicationName\DashboardServer\AccountVerification\Domain\DTO\SendEmailRequest;
+use App\ApplicationName\Mailing\Domain\DTO\SendEmailRequest;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Mail\Mailable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class SendMailJob implements ShouldQueue
 {
@@ -18,7 +21,7 @@ class SendMailJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(private SendEmailRequest $request)
+    public function __construct(private Mailable $mailable, private string $toEmail)
     {
     }
 
@@ -29,5 +32,7 @@ class SendMailJob implements ShouldQueue
      */
     public function handle()
     {
+        Log::info(json_encode($this->mailable));
+        Mail::to($this->toEmail)->send($this->mailable);
     }
 }

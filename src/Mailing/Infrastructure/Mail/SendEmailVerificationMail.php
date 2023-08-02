@@ -1,35 +1,10 @@
 <?php
 
-namespace App\Mail;
+namespace App\ApplicationName\Mailing\Infrastructure\Mail;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Mail\Mailable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
-
-class SendPasswordResetLink extends Mailable
+class SendEmailVerificationMail extends Mail
 {
-    use Queueable, SerializesModels;
-
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct(private string $emailTo, $token)
-    {
-        $this->user = $user;
-        $this->token = $token;
-
-    }
-
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
-    public function build()
-    {
-        return $this->subject($data['subject'])->view('emails.app_email', $data);
-    }
+    protected const REQUIRED_PARAMETERS = ['code', 'user_id'];
+    protected const SUBJECT = 'Account Verification';
+    protected const VIEW_PATH = 'emails.verificationEmail';
 }

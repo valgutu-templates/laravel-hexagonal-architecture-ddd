@@ -13,4 +13,27 @@ class SendEmailRequest
 
     }
 
+    public function type(): ?string
+    {
+        return $this->type;
+    }
+
+    public function toEmail(): ?string
+    {
+        return $this->toEmail;
+    }
+
+    public function data(): array
+    {
+        return $this->data;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'type' => $this->type,
+            'to_email' => $this->toEmail,
+            'data' => $this->data,
+        ];
+    }
 }

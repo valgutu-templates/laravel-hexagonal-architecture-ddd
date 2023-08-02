@@ -8,7 +8,7 @@ use DomainException;
 
 class EmailVerificationCodeNotFoundException extends DomainException
 {
-    public function __construct(private string $verificationCode)
+    public function __construct(private ?string $verificationCode = null)
     {
         parent::__construct();
     }
