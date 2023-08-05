@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y \
     jpegoptim optipng pngquant gifsicle \
     vim \
     libzip-dev \
+    supervisor \
     unzip \
     git \
     curl
@@ -40,6 +41,12 @@ RUN useradd -u 1000 -ms /bin/bash -g www www
 
 # Copy existing application directory contents
 #COPY ./ $APP_DIR
+COPY etc/docker/supervisor/laravel-worker.conf /etc/supervisor/conf.d/laravel-worker.conf
+
+# Set Supervisor log folder
+RUN mkdir -p /var/log/php \
+	&& mkdir -p /var/log/supervisor \
+    && chown -R www:www /var/log/supervisor
 
 # Copy existing application directory permissions
 COPY --chown=www:www . $APP_DIR
