@@ -20,7 +20,10 @@ git clone git@github.com:valgutu-templates/laravel-hexagonal-architecture-ddd.gi
 - Set up DB credentials in `Makefile` and `.env`
 - Change the ApplicationName in composer.json autoload psr-4
 - Rename app in `.env`, `Makefile`, `default.conf`, `Dockerfile`
-- Create a network `make create-network`
+- Create a network:
+```
+make create-network
+```
 - Install all the dependencies and bring up the project with Docker executing:
 ```
 make up
