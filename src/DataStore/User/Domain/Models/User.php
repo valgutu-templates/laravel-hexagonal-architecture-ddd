@@ -2,7 +2,7 @@
 
 namespace App\ApplicationName\DataStore\User\Domain\Models;
 
-use App\ApplicationName\DataStore\AccessToken\Domain\Models\AccessToken;
+use App\ApplicationName\DataStore\AccessToken\Domain\Models\EmailVerificationCode;
 use App\ApplicationName\DataStore\Role\Domain\Models\Role;
 use App\ApplicationName\Shared\Traits\TimestampsFormat;
 use Illuminate\Database\Eloquent\Model;
@@ -27,6 +27,6 @@ class User extends Model
 
     public function accessToken(): HasMany
     {
-        return $this->hasMany(AccessToken::class, 'user_id', 'id');
+        return $this->hasMany(EmailVerificationCode::class, 'user_id', 'id');
     }
 }

@@ -73,6 +73,7 @@ else
 		-v "$(PWD)/var/log/php:/var/log/php" \
 		"$(image-name):$(docker-target)" \
 		php-fpm -F
+		make supervisor-start
 endif
 
 stop: ## Stop the server
@@ -163,3 +164,22 @@ migrate-down: ## The Down command rollbacks a single migration on the laravel (m
 ## Implement command to create action (Actions, CommandBus, etc.)
 make create-action:
 	@echo "Implement command"
+
+## Supervisor - Queue Worker commands
+supervisor-start: ## Starts the supervisor process in the container
+	docker exec -it -u 0 "$(image-name)" /usr/bin/supervisord
+
+laravel-worker-log:
+	docker exec -it -u 0 "$(image-name)" tail /var/log/supervisor/supervisor.log
+
+laravel-worker-status: ## View the status of the supervisor queue-worker program
+	docker exec -it -u 0 "$(image-name)" supervisorctl status laravel-worker:*
+
+laravel-worker-start: ## Uses supervisorctl to start the queue-worker program
+	docker exec -it -u 0 "$(image-name)" supervisorctl start laravel-worker:*
+
+laravel-worker-stop: ## Uses supervisorctl to stop the queue-worker program
+	docker exec -it -u 0 "$(image-name)" supervisorctl stop laravel-worker:*
+
+laravel-worker-attributes: ## Gets the current attributes of the queue-worker program
+	make console cmd="queue:worker state -Q main_queue"

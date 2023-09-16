@@ -2,19 +2,19 @@
 
 namespace App\ApplicationName\DataStore\AccessToken\Application;
 
-use App\ApplicationName\DataStore\AccessToken\Domain\AccessTokenRepository;
-use App\ApplicationName\DataStore\AccessToken\Domain\DTO\AccessTokenRequest;
+use App\ApplicationName\DataStore\AccessToken\Domain\VerificationCodeRepository;
+use App\ApplicationName\DataStore\AccessToken\Domain\DTO\VerificationCodeRequest;
 use App\ApplicationName\Shared\CommandBus\Domain\DTO\CommandResponse;
 
 class FindAccessTokenByUserCommand
 {
     public function __construct(
-        private AccessTokenRepository $repository,
+        private VerificationCodeRepository $repository,
     )
     {
     }
 
-    public function execute(AccessTokenRequest $request): CommandResponse
+    public function execute(VerificationCodeRequest $request): CommandResponse
     {
         try {
             $response = $this->repository->findByUser($request);
