@@ -16,7 +16,7 @@ Implementing Domain Driven Design and Hexagonal Architecture example API using L
 ```
 git clone git@github.com:valgutu-templates/laravel-hexagonal-architecture-ddd.git
 ```
-- Create `.env` file from `.env.example`
+- Create `.env` in `framework` folder file from `.env.example`
 - Set up DB credentials in `Makefile` and `.env`
 - Change the ApplicationName in composer.json autoload psr-4
 - Rename app in `.env`, `Makefile`, `default.conf`, `Dockerfile`
