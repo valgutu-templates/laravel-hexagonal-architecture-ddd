@@ -20,6 +20,11 @@ git clone git@github.com:valgutu-templates/laravel-hexagonal-architecture-ddd.gi
 - Set up DB credentials in `Makefile` and `.env`
 - Change the ApplicationName in composer.json autoload psr-4
 - Rename app in `.env`, `Makefile`, `default.conf`, `Dockerfile`
+- Update `BUILD_USER_ID` and `BUILD_GROUP_ID` variables in `Makefile`
+- Change permissions for the project folder:
+```
+sudo chmod -R *** arise-api/
+```
 - Create a network:
 ```
 make create-network
