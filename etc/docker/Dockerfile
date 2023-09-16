@@ -1,5 +1,5 @@
 # Multi-stage build
-ARG PHP_VERSION=8.0.14
+ARG PHP_VERSION=8.2.8
 
 FROM php:${PHP_VERSION}-fpm AS base
 
