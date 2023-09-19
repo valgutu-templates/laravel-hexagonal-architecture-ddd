@@ -4,7 +4,7 @@ Implementing Domain Driven Design and Hexagonal Architecture example API using L
 ## Description:
   - Docker
   - Makefile
-  - PHP 8.0
+  - PHP
   - Laravel
  
 ## Installation
@@ -20,7 +20,6 @@ git clone git@github.com:valgutu-templates/laravel-hexagonal-architecture-ddd.gi
 - Set up DB credentials in `Makefile` and `.env`
 - Change the ApplicationName in composer.json autoload psr-4
 - Rename app in `.env`, `Makefile`, `default.conf`, `Dockerfile`
-- Update `BUILD_USER_ID` and `BUILD_GROUP_ID` variables in `Makefile`
 - Change permissions for the project folder:
 ```
 sudo chmod -R *** arise-api/
